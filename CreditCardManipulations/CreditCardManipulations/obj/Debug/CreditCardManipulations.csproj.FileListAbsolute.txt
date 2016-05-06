@@ -1,0 +1,5 @@
+E:\IT&Web Revolution\Visual Studio 2012\Projects\Credit_Card_Manipulations\CreditCardManipulations\CreditCardManipulations\bin\Debug\CreditCardManipulations.exe
+E:\IT&Web Revolution\Visual Studio 2012\Projects\Credit_Card_Manipulations\CreditCardManipulations\CreditCardManipulations\bin\Debug\CreditCardManipulations.pdb
+E:\IT&Web Revolution\Visual Studio 2012\Projects\Credit_Card_Manipulations\CreditCardManipulations\CreditCardManipulations\obj\Debug\CreditCardManipulations.csprojResolveAssemblyReference.cache
+E:\IT&Web Revolution\Visual Studio 2012\Projects\Credit_Card_Manipulations\CreditCardManipulations\CreditCardManipulations\obj\Debug\CreditCardManipulations.exe
+E:\IT&Web Revolution\Visual Studio 2012\Projects\Credit_Card_Manipulations\CreditCardManipulations\CreditCardManipulations\obj\Debug\CreditCardManipulations.pdb
