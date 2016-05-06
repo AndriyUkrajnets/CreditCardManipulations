@@ -1,1 +1,1 @@
-# Проект виконано на C#, у середовищі Visual Studio 2012. Щоб запустити: скачуємо та запускаємо у Visual Studio, .NET Framework 4.
+# Проект виконано на C#, у середовищі Visual Studio 2012. Скачуємо та запускаємо у Visual Studio, версія .NET Framework - 4.
