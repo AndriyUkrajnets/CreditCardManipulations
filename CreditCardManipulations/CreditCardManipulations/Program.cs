@@ -12,17 +12,19 @@ namespace CreditCard
         {
             Console.WriteLine("Please enter your credit card number here:");
             string cardNumber = Console.ReadLine();
-            string getVendor = GetCreditCardVendore(cardNumber);
-            Console.WriteLine(getVendor);
             string onlyNumbers = GetCardOnlyNumbers(cardNumber);
             var isValid = IsCreditCardNumberValid(onlyNumbers);
             if (isValid)
             {
+                string getVendor = GetCreditCardVendore(cardNumber);
+                Console.WriteLine(getVendor);
                 Console.WriteLine("This Credit Card Number is valid according to Luhn algorithm!");
+                GenerateNextCreditCardNumber(onlyNumbers);
             }
             else
             {
                 Console.WriteLine("Invalid Credit Card Number");
+                GenerateNextCreditCardNumber(onlyNumbers);
             }
             Console.ReadLine();
         }
@@ -30,11 +32,11 @@ namespace CreditCard
         // Task #1
         public static string GetCreditCardVendore(string cardNumber)
         {
-            Regex regAmericanExpress = new Regex(@"^3[47][\d]{2}[ -]*[\d]{4}[ -]*[\d]{4}[ -]*[\d]{3}$"); // 34, 37 (15)  
-            Regex regMaestro = new Regex(@"^(5[06789][\d]{2}|6[\d]{3})[ -]*[\d]{4}[ -]*[\d]{4}([ -]*[\d]{4}[ -]*[\d]{1,3}|[ -]*[\d]{4})?$"); // 50, 56-69 (12-19)
-            Regex regMasterCard = new Regex(@"^5[1-5][\d]{2}[ -]*[\d]{4}[ -]*[\d]{4}[ -]*[\d]{4}$");  // 51-55     (16)
-            Regex regVisa = new Regex(@"^4[\d]{3}[ -]*[\d]{4}[ -]*[\d]{4}([ -]*[\d]{1}|[ -]*[\d]{4}|[ -]*[\d]{4}[ -]*[\d]{3})?$");      // 4 (13, 16, 19)
-            Regex regJCB = new Regex(@"^35[2-8][\d]{1}[ -]*[\d]{4}[ -]*[\d]{4}[ -]*[\d]{4}$"); // 3528-3589 (16)
+            Regex regAmericanExpress = new Regex(@"^3[47][\d]{2}[ ]*[\d]{4}[ ]*[\d]{4}[ ]*[\d]{3}$"); // 34, 37 (15)  
+            Regex regMaestro = new Regex(@"^(5[06789][\d]{2}|6[\d]{3})[ ]*[\d]{4}[ ]*[\d]{4}([ ]*[\d]{4}[ ]*[\d]{1,3}|[ ]*[\d]{4})?$"); // 50, 56-69 (12-19)
+            Regex regMasterCard = new Regex(@"^5[1-5][\d]{2}[ ]*[\d]{4}[ ]*[\d]{4}[ ]*[\d]{4}$");  // 51-55     (16)
+            Regex regVisa = new Regex(@"^4[\d]{3}[ -]*[\d]{4}[ ]*[\d]{4}([ ]*[\d]{1}|[ ]*[\d]{4}|[ ]*[\d]{4}[ ]*[\d]{3})?$");      // 4 (13, 16, 19)
+            Regex regJCB = new Regex(@"^35[2-8][\d]{1}[ ]*[\d]{4}[ ]*[\d]{4}[ ]*[\d]{4}$"); // 3528-3589 (16)
 
             if (regAmericanExpress.IsMatch(cardNumber))
                 return "American Express";
@@ -52,15 +54,14 @@ namespace CreditCard
         // Function to get only numbers. No spaces or dashes.
         public static string GetCardOnlyNumbers(string cardNumber)
         {
-            Regex regNumFormat = new Regex(@"[-]|[ ]");
+            Regex regNumFormat = new Regex(@"[ ]");
             if (string.IsNullOrEmpty(cardNumber))
             {
                 return "It's not a number!";
             }
             if (regNumFormat.IsMatch(cardNumber))
             {
-                string cardNumberNoDefis = cardNumber.Replace("-", "");
-                string cardNumberCorect = cardNumberNoDefis.Replace(" ", "");
+                string cardNumberCorect = cardNumber.Replace(" ", "");
                 return cardNumberCorect;
             }
             else
@@ -79,6 +80,22 @@ namespace CreditCard
                             .Sum((e) => e / 10 + e % 10);
         
             return sumOfDigits % 10 == 0;
+        }
+
+        // Task #3
+        public static void GenerateNextCreditCardNumber(string onlyNumbers)
+        {
+            long longNumbers = Convert.ToInt64(onlyNumbers);
+            for (int i = 1; i <= 10; i++)
+            {
+                long e = longNumbers + i;
+                string numberToString = e.ToString();
+                var isValid = IsCreditCardNumberValid(numberToString);
+                if (isValid)
+                {
+                    Console.WriteLine("Next valid number is: {0}", numberToString);
+                }
+            }
         }
     }
 }
